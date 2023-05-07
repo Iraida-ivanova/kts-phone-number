@@ -80,6 +80,9 @@ module.exports = {
       components: path.join(srcPath, 'components'),
       App: path.join(srcPath, 'App'),
       pages: path.join(srcPath, 'App/pages'),
+      styles: path.join(srcPath, 'styles'),
+      stores: path.join(srcPath, 'stores'),
+      shared: path.join(srcPath, 'shared'),
     },
   },
   devServer: {

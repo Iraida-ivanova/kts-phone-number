@@ -1,0 +1,15 @@
+@import 'styles/mixins';
+
+.validate {
+  @include text-font;
+
+  display: flex;
+  align-items: center;
+  color: $grey-text-color;
+  margin-top: $indent-m;
+
+  &__icon {
+    vertical-align: top;
+    margin-right: $indent-s;
+  }
+}

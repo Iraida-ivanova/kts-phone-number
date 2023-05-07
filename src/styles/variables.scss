@@ -1,0 +1,24 @@
+$white: rgba(255, 255, 255, 1);
+// border
+$base-border-color: rgba(194, 201, 209, 0.5);
+$success-border-color: rgba(60, 193, 59, 0.5);
+$error-border-color: rgba(240, 55, 56, 0.5);
+$focused-border-color: rgba(62, 102, 251, 1);
+
+$text-color: rgba(0, 0, 0, 1);
+$grey-text-color: rgba(0, 0, 0, 0.5);
+
+$scrollbar-thumb-color: rgba(196, 196, 196, 1);
+$scrollbar-border-color: rgba(196, 196, 196, 0.2);
+
+$disabled-background-color: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.75),
+    rgba(255, 255, 255, 0.75)
+  ),
+  #c2c9d1;
+
+$indent-xs: 3px;
+$indent-s: 8px;
+$indent-m: 10px;
+$indent-l: 12px;

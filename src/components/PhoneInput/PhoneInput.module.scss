@@ -1,0 +1,11 @@
+@import 'styles/mixins';
+
+.phone-form {
+  display: flex;
+  gap: $indent-s;
+  margin-top: $indent-m;
+
+  &__label {
+    @include text-font($font-weight: 600);
+  }
+}

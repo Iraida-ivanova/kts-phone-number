@@ -59,6 +59,11 @@
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
+    "classnames": "^2.3.2",
+    "countries-phone-masks": "^1.0.5",
+    "country-flag-icons": "^1.5.7",
+    "mobx": "^6.9.0",
+    "mobx-react-lite": "^3.4.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

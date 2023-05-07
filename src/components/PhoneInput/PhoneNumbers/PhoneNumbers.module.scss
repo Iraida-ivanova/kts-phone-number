@@ -1,0 +1,10 @@
+@import 'styles/mixins';
+
+.numbers {
+  @include number-font;
+
+  display: flex;
+  gap: $indent-s;
+  align-items: center;
+  color: $grey-text-color;
+}

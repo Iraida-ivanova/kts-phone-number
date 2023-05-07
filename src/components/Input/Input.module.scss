@@ -1,0 +1,33 @@
+@import 'styles/mixins';
+
+.input {
+  min-width: 32px;
+  height: 40px;
+  padding: 10px 8px;
+  border-radius: 8px;
+  border: 1px solid;
+  border-color: $base-border-color;
+  color: $text-color;
+  background-color: $white;
+
+  &::placeholder {
+    color: $grey-text-color;
+  }
+
+  &:focus,
+  &:hover {
+    border-color: $focused-border-color;
+  }
+
+  &:disabled {
+    background-color: $disabled-background-color;
+  }
+
+  &_error {
+    border-color: $error-border-color;
+  }
+
+  &_success {
+    border-color: $success-border-color;
+  }
+}

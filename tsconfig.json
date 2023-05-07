@@ -1,23 +1,26 @@
 {
   "compilerOptions": {
-	"noEmit": true,
-	"allowJs": true,
-	"sourceMap": true,
-	"strict": true,
-	"strictNullChecks": true,
-	"skipLibCheck": true,
-	"module": "es6",
-	"target": "es6",
-	"moduleResolution": "node",
+    "noEmit": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "skipLibCheck": true,
+    "module": "es6",
+    "target": "es6",
+    "moduleResolution": "node",
     "jsx": "react",
-	"esModuleInterop": true,
-	"allowSyntheticDefaultImports": true,
-	"baseUrl": ".",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
     "paths": {
       "components/*": ["src/components/*"],
-			"App/*": ["src/App/*"],
-			"pages/*": ["src/App/pages/*"]
-	},
+      "App/*": ["src/App/*"],
+      "pages/*": ["src/App/pages/*"],
+      "styles/*": ["src/styles/*"],
+      "stores/*": ["src/stores/*"],
+      "shared/*": ["src/shared/*"]
+    }
   },
   "include": ["src/**/*", "./Declaration.d.ts"],
   "exclude": ["node_modules"]

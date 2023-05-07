@@ -1,0 +1,21 @@
+@import 'components/Input/Input.module.scss';
+
+.country-selector {
+  position: relative;
+
+  &__input {
+    @include number-font;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+
+    &-flag {
+      margin-right: $indent-xs;
+    }
+
+    &-icon {
+      margin-left: $indent-l;
+      cursor: pointer;
+    }
+  }
+}
