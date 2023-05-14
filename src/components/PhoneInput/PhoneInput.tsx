@@ -13,24 +13,20 @@ import s from './PhoneInput.module.scss';
 import PhoneNumbers from './PhoneNumbers';
 import ValidateResultComponent from './ValidateResultComponent/ValidateResultComponent';
 
-const PhoneInput: React.FC = () => {
+type Props = {
+  disabled?: boolean;
+};
+
+const PhoneInput: React.FC<Props> = ({ disabled }) => {
   const store = useLocalStore(() => new PhoneInputStore());
   React.useEffect(() => {
     store.initMasks();
   }, []);
 
   const handleKeyDown = React.useCallback((e: React.KeyboardEvent) => {
-    const phoneNumbers = store.phoneNumbersStore.phoneNumbers;
-
     const index = (e.target as HTMLFormElement).name;
     if (!index) {
       return;
-    }
-
-    if (e.code.includes('Digit')) {
-      if (phoneNumbers[+index]) {
-        focusPhoneInput({ name: String(+index + 1) });
-      }
     }
 
     if (e.key === 'ArrowLeft') {
@@ -44,7 +40,7 @@ const PhoneInput: React.FC = () => {
     }
 
     if (e.key === 'Backspace') {
-      if (phoneNumbers[+index]) {
+      if (store.phoneNumbersStore.isFilledNumber(+index)) {
         store.phoneNumbersStore.deleteNumber(+index);
       } else {
         store.phoneNumbersStore.deleteNumber(+index - 1);
@@ -52,7 +48,7 @@ const PhoneInput: React.FC = () => {
       }
     }
     if (e.key === 'Enter') {
-      store.validate();
+      store.submit();
       blurPhoneInput({ name: String(+index) });
     }
   }, []);
@@ -67,10 +63,11 @@ const PhoneInput: React.FC = () => {
         Введите номер телефона
       </label>
       <form className={s['phone-form']} name="phone">
-        <CountrySelector />
+        <CountrySelector disabled={disabled} />
         <PhoneNumbers
           mask={store.selectedMask.mask}
           onKeyDown={handleKeyDown}
+          disabled={disabled}
         />
       </form>
       {store.validateResult && (

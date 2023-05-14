@@ -1,10 +1,9 @@
-@import 'components/Input/Input.module.scss';
+@import 'styles/variables';
 
 .country-selector {
   position: relative;
 
   &__input {
-    @include number-font;
     width: fit-content;
     display: flex;
     align-items: center;

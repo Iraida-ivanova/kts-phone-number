@@ -1,8 +1,18 @@
 @import 'styles/mixins';
 
 .number-input {
-  @include number-font;
-
   width: 32px;
   text-align: center;
+
+  &:focus {
+    text-align: start;
+  }
+
+  &:focus::placeholder {
+    padding-left: 3px;
+  }
+
+  &:valid {
+    text-align: center;
+  }
 }

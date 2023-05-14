@@ -1,15 +1,19 @@
 import * as React from 'react';
 
-import cn from 'classnames';
 import { observer } from 'mobx-react-lite';
 
 import DownIcon from 'components/icons/DownIcon/DownIcon';
+import InputElement from 'components/InputElement';
 import { usePhoneInputStore } from 'stores/PhoneInputStore';
 
 import s from './CountrySelector.module.scss';
-import Selector from './Selector/Selector';
+import Selector from './Selector';
 
-const CountrySelector: React.FC = () => {
+type Props = {
+  disabled?: boolean;
+};
+
+const CountrySelector: React.FC<Props> = ({ disabled }) => {
   const [opened, setOpened] = React.useState<boolean>(false);
   const store = usePhoneInputStore();
 
@@ -28,8 +32,10 @@ const CountrySelector: React.FC = () => {
   }, [opened]);
 
   const handleIconClick = React.useCallback(() => {
-    setOpened((prev) => !prev);
-  }, []);
+    if (!disabled) {
+      setOpened((prev) => !prev);
+    }
+  }, [disabled]);
 
   if (!store.selectedMask) {
     return null;
@@ -37,22 +43,23 @@ const CountrySelector: React.FC = () => {
 
   return (
     <div className={s['country-selector']} id="selector">
-      <div
-        className={cn(
-          s.input,
-          store.validateResult && s[`input_${store.validateResult}`],
-          s['country-selector__input']
-        )}
+      <InputElement
+        type="div"
+        validateResult={store.validateResult}
+        className={s['country-selector__input']}
+        disabled={disabled}
       >
-        <span className={s['country-selector__input-flag']}>
-          {store.selectedMask?.emoji}
-        </span>
-        <span>{store.selectedMask?.prefix}</span>
-        <DownIcon
-          className={s['country-selector__input-icon']}
-          onClick={handleIconClick}
-        />
-      </div>
+        <>
+          <span className={s['country-selector__input-flag']}>
+            {store.selectedMask?.emoji}
+          </span>
+          <span>{store.selectedMask?.prefix}</span>
+          <DownIcon
+            className={s['country-selector__input-icon']}
+            onClick={handleIconClick}
+          />
+        </>
+      </InputElement>
       {opened && <Selector />}
     </div>
   );

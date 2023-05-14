@@ -16,7 +16,7 @@ import {
   MaskModel,
   normalizeMask,
 } from 'stores/models/mask';
-import { PhoneNumbersStore } from 'stores/PhoneNumbersStore';
+import PhoneNumbersStore from 'stores/PhoneNumbersStore';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const countries = require('countries-phone-masks');
@@ -40,9 +40,10 @@ export default class PhoneInputStore implements ILocalStore {
       masks: computed,
       validateResult: computed,
       numbersLength: computed,
+      phoneValue: computed,
 
       reset: action,
-      clearValidateResult: action,
+      initMasks: action,
     });
   }
 
@@ -86,15 +87,20 @@ export default class PhoneInputStore implements ILocalStore {
     return [...this.selectedMask.mask].filter((char) => char === '#').length;
   }
 
-  validate = () => {
-    this.phoneNumbersStore.validate();
+  get phoneValue(): string | null {
+    if (!this.selectedMask || this.validateResult !== ValidateResult.success) {
+      return null;
+    }
+    return (
+      this.selectedMask.prefix + this.phoneNumbersStore.phoneNumbers.join('')
+    );
+  }
+
+  clearValidateResult = (): void => {
+    this.phoneNumbersStore.clearValidateResult();
   };
 
-  clearValidateResult = () => {
-    this.phoneNumbersStore.validateResult = null;
-  };
-
-  initMasks = () => {
+  initMasks = (): void => {
     this._masks = countries.reduce(
       (
         acc: CollectionModel<string, MaskModel>,
@@ -117,6 +123,14 @@ export default class PhoneInputStore implements ILocalStore {
     this._selectedKey = 'RU';
   };
 
+  submit = (): void => {
+    this.phoneNumbersStore.validate();
+
+    if (this.phoneValue) {
+      alert(this.phoneValue);
+    }
+  };
+
   private readonly selectedKeyReaction: IReactionDisposer = reaction(
     () => this._selectedKey,
     () => {
@@ -125,7 +139,7 @@ export default class PhoneInputStore implements ILocalStore {
     }
   );
 
-  reset = () => {
+  reset = (): void => {
     this._selectedKey = undefined;
     this._masks = {
       keys: [],

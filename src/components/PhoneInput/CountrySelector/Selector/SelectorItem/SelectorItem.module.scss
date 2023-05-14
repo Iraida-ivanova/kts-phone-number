@@ -8,6 +8,7 @@
   align-items: center;
   margin-top: 10px;
   cursor: pointer;
+  transition: background 0.2s ease-in-out;
 
   &:first-child {
     margin-top: 0;
@@ -30,5 +31,14 @@
         rgba(255, 255, 255, 0.5)
       ),
       rgba(62, 102, 251, 0.25);
+  }
+
+  &:hover {
+    background: linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.5),
+        rgba(255, 255, 255, 0.5)
+      ),
+      rgba(62, 102, 251, 0.1);
   }
 }

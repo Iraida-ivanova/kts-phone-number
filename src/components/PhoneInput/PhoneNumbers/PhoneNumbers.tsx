@@ -10,9 +10,10 @@ import NumberInput from '../NumberInput/NumberInput';
 type Props = {
   mask: string;
   onKeyDown: (e: React.KeyboardEvent) => void;
+  disabled?: boolean;
 };
 
-const PhoneNumbers: React.FC<Props> = ({ mask, onKeyDown }) => {
+const PhoneNumbers: React.FC<Props> = ({ mask, onKeyDown, disabled }) => {
   let number = 0;
 
   return (
@@ -29,7 +30,7 @@ const PhoneNumbers: React.FC<Props> = ({ mask, onKeyDown }) => {
         }
         const index = number;
         number++;
-        return <NumberInput index={index} key={idx} />;
+        return <NumberInput index={index} key={idx} disabled={disabled} />;
       })}
     </div>
   );

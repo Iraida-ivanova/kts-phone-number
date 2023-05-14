@@ -1,6 +1,8 @@
 @import 'styles/mixins';
 
 .input {
+  @include number-font;
+
   min-width: 32px;
   height: 40px;
   padding: 10px 8px;
@@ -9,6 +11,7 @@
   border-color: $base-border-color;
   color: $text-color;
   background-color: $white;
+  transition: border-color 0.2s ease-in-out;
 
   &::placeholder {
     color: $grey-text-color;
@@ -19,8 +22,8 @@
     border-color: $focused-border-color;
   }
 
-  &:disabled {
-    background-color: $disabled-background-color;
+  &_disabled {
+    background: $disabled-background-color;
   }
 
   &_error {
